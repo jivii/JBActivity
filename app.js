@@ -36,7 +36,7 @@ app.post('/logout', routes.logout );
 app.post('/save/', activity.save );
 app.post('/validate/', activity.validate );
 app.post('/publish/', activity.publish );
-app.post('/execute/', activity.execute );
+app.post('/journeybuilder/execute/', activity.execute );
 app.post('/stop/', activity.stop );
 
 http.createServer(app).listen(app.get('port'), function(){
