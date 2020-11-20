@@ -122,7 +122,7 @@ exports.execute = function (req, res) {
 
     const client = require('twilio')(accountSid, authToken); 
      
-    console.log(to);
+    console.log("to- "+to);
     
     client.messages 
           .create({ 
