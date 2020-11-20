@@ -85,6 +85,21 @@ exports.save = function (req, res) {
     res.send(200, 'Save');
 };
 
+exports.stop = function (req, res) {
+    
+    console.log("5 -- For Stop");	
+    console.log("4");	
+    console.log("3");	
+    console.log("2");	
+    console.log("1");	
+    //console.log("Saved: "+req.body.inArguments[0]);
+    
+    // Data from the req and put it in an array accessible to the main app.
+    console.log( req.body );
+    logData(req);
+    res.send(200, 'Stop');
+};
+
 /*
  * POST Handler for /execute/ route of Activity.
  */
@@ -162,8 +177,8 @@ exports.publish = function (req, res) {
     
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
-   //  logData(req);
-    // res.send(200, 'Publish');
+     logData(req);
+     res.send(200, 'Publish');
 };
 
 /*
