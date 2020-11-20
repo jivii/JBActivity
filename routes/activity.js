@@ -122,27 +122,27 @@ exports.execute = function (req, res) {
     logData(req);
     res.send(200, 'Publish');
 
-    // Used to decode JWT
-    // JWT(req.body, process.env.jwtSecret, (err, decoded) => {
+     Used to decode JWT
+     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
 
-    //     // verification error -> unauthorized request
-    //     if (err) {
-    //         console.error(err);
-    //         return res.status(401).end();
-    //     }
+         // verification error -> unauthorized request
+       if (err) {
+             console.error(err);
+            return res.status(401).end();
+         }
 
-    //     if (decoded && decoded.inArguments && decoded.inArguments.length > 0) {
+         if (decoded && decoded.inArguments && decoded.inArguments.length > 0) {
             
-    //         // decoded in arguments
-    //         var decodedArgs = decoded.inArguments[0];
+             // decoded in arguments
+             var decodedArgs = decoded.inArguments[0];
             
-    //         logData(req);
-    //         res.send(200, 'Execute');
-    //     } else {
-    //         console.error('inArguments invalid.');
-    //         return res.status(400).end();
-    //     }
-    // });
+             logData(req);
+             res.send(200, 'Execute');
+         } else {
+             console.error('inArguments invalid.');
+             return res.status(400).end();
+        }
+     });
 };
 
 
@@ -159,9 +159,9 @@ exports.publish = function (req, res) {
     //console.log("Published: "+req.body.inArguments[0]);        
     
     // Data from the req and put it in an array accessible to the main app.
-    //console.log( req.body );
-//     logData(req);
-//     res.send(200, 'Publish');
+    console.log( req.body );
+     logData(req);
+     res.send(200, 'Publish');
 };
 
 /*
