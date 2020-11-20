@@ -125,7 +125,7 @@ exports.execute = function (req, res) {
     client.messages 
           .create({ 
              body: body,
-             to: to,//"+916375372026",
+             to: "+916375372026",
              from:"+19386666580"
              //messagingService: messagingService,
              //to: to
