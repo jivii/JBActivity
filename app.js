@@ -38,6 +38,8 @@ app.post('/validate/', activity.validate );
 app.post('/publish/', activity.publish );
 app.post('/journeybuilder/execute/', activity.execute );
 app.post('/stop/', activity.stop );
+app.post('/saveToDE/', activity.saveToDE );
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
