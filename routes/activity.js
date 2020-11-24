@@ -84,7 +84,7 @@ exports.save = function (req, res) {
     logData(req);
     res.send(200, 'Save');
 };
-
+/*
 exports.saveToDE = function (req, res) {
     
     console.log("5 -- For saveToDE");	
@@ -100,7 +100,7 @@ exports.saveToDE = function (req, res) {
     res.send(200, 'saveToDE');
 };
 
-
+*/
 
 exports.stop = function (req, res) {
     
