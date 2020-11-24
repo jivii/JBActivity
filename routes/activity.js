@@ -147,7 +147,10 @@ exports.execute = function (req, res) {
              to:   "+91"+to, //"+916375372026",
              from:"+19386666580"
             }) 
-          .then(message => console.log(message.sid)) 
+          .then(message => console.log(message.sid);
+                console.log(message.body);
+                console.log(message.status);
+               ) 
           .done();
 
 
