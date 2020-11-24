@@ -85,6 +85,23 @@ exports.save = function (req, res) {
     res.send(200, 'Save');
 };
 
+exports.saveToDE = function (req, res) {
+    
+    console.log("5 -- For saveToDE");	
+    console.log("4");	
+    console.log("3");	
+    console.log("2");	
+    console.log("1");	
+    //console.log("Saved: "+req.body.inArguments[0]);
+    
+    // Data from the req and put it in an array accessible to the main app.
+    console.log( req.body );
+    logData(req);
+    res.send(200, 'saveToDE');
+};
+
+
+
 exports.stop = function (req, res) {
     
     console.log("5 -- For Stop");	
