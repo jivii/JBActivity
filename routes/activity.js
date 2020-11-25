@@ -157,6 +157,7 @@ exports.execute = function (req, res) {
                 console.log("Error message - "+message.error_message);
                 console.log("Direction - "+message.direction);
         
+                /*
                 var myDE = DataExtension.Init("7990AB87-86FD-4815-A47F-4F4903124687");
                 myDE.Rows.Add({ Name:"firstName",
                         SubscriberKey: "LastName",
@@ -165,14 +166,14 @@ exports.execute = function (req, res) {
                         Status:message.status,
                         SID:message.sid
                         });
-                
+               */ 
             }) 
           .done();
 
 
-    logData(req.keyValue);
+    //logData(req.keyValue);
     // FOR TESTING
-    logData(req);
+    logData("Testing -"+req);
     res.send(200, 'Publish');
 
     // Used to decode JWT
