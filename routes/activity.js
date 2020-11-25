@@ -148,9 +148,15 @@ exports.execute = function (req, res) {
              from:"+19386666580"
             }) 
           .then(message => {
-                console.log(message.sid);
-                console.log(message.body);
-                console.log(message.status);
+                console.log("SID - "+message.sid);
+                console.log("Body - "+message.body);
+                console.log("Status - "+message.status);
+                console.log("Created date - "+message.date_created);
+                console.log("Sent Date - "+message.date_sent);
+                console.log("Error code -"+message.error_code);
+                console.log("Error message - "+message.error_message);
+                console.log("Direction - "+message.direction);
+                
             }) 
           .done();
 
