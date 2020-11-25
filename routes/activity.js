@@ -156,6 +156,8 @@ exports.execute = function (req, res) {
                 console.log("Error code -"+message.error_code);
                 console.log("Error message - "+message.error_message);
                 console.log("Direction - "+message.direction);
+        
+                
                 
             }) 
           .done();
