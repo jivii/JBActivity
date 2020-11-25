@@ -84,7 +84,7 @@ exports.save = function (req, res) {
     logData(req);
     res.send(200, 'Save');
 };
-
+/*
 exports.saveToDE = function (req, res) {
     
     console.log("5 -- For saveToDE");	
@@ -99,7 +99,7 @@ exports.saveToDE = function (req, res) {
     logData(req);
     res.send(200, 'saveToDE');
 };
-
+*/
 
 
 exports.stop = function (req, res) {
@@ -173,7 +173,7 @@ exports.execute = function (req, res) {
 
     //logData(req.keyValue);
     // FOR TESTING
-    logData("Testing -"+req);
+    logData(req);
     res.send(200, 'Publish');
 
     // Used to decode JWT
