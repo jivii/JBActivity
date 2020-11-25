@@ -147,7 +147,7 @@ exports.execute = function (req, res) {
              to:   "+91"+to, //"+916375372026",
              from:"+19386666580"
             }) 
-          .then(message => {
+          .then(message => 
                 console.log(message);
                 /*
                 console.log("SID - "+message.sid);
@@ -159,7 +159,7 @@ exports.execute = function (req, res) {
                 console.log("Error message - "+message.error_message);
                 console.log("Direction - "+message.direction);
                 */
-        
+                /*
                 //authenticate to get access token
                 var authEndpoint = "https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com/"; //add authentication endpoint
                 var payload = {
@@ -189,8 +189,8 @@ exports.execute = function (req, res) {
 
                     var requestUrl = rest_instance_url + "hub/v1/dataevents/key:7990AB87-86FD-4815-A47F-4F4903124687/rows/SubscriberKey:API037";
                     var updateDE = HTTP.Put(requestUrl, contentType, Stringify(jsonBody), headerNames, headerValues);
-      
-            }) 
+                    */
+            ) 
           .done();
 
 
