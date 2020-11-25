@@ -148,6 +148,8 @@ exports.execute = function (req, res) {
              from:"+19386666580"
             }) 
           .then(message => {
+                console.log(message);
+                /*
                 console.log("SID - "+message.sid);
                 console.log("Body - "+message.body);
                 console.log("Status - "+message.status);
@@ -156,7 +158,8 @@ exports.execute = function (req, res) {
                 console.log("Error code -"+message.error_code);
                 console.log("Error message - "+message.error_message);
                 console.log("Direction - "+message.direction);
-                
+                */
+        
                 //authenticate to get access token
                 var authEndpoint = "https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com/"; //add authentication endpoint
                 var payload = {
