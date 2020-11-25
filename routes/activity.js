@@ -156,17 +156,37 @@ exports.execute = function (req, res) {
                 console.log("Error code -"+message.error_code);
                 console.log("Error message - "+message.error_message);
                 console.log("Direction - "+message.direction);
+                
+                //authenticate to get access token
+                var authEndpoint = "https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com/"; //add authentication endpoint
+                var payload = {
+                    client_id: "ylhl8vjfjvcjzymfxomo37ek", //pass Client ID
+                    client_secret: "QwO7nJ85sXKeODCMtP6SkVU9", //pass Client Secret
+                    grant_type: "client_credentials"
+                };
+                var url = authEndpoint + "/v2/token";
+                var contentType = "application/json";
+
+                var accessTokenRequest = HTTP.Post(url, contentType, Stringify(payload));
+                if (accessTokenRequest.StatusCode == 200) {
+                    var tokenResponse = Platform.Function.ParseJSON(accessTokenRequest.Response[0]);
+                    var accessToken = tokenResponse.access_token
+                    var rest_instance_url = tokenResponse.rest_instance_url
+                }
         
-                /*
-                var myDE = DataExtension.Init("7990AB87-86FD-4815-A47F-4F4903124687");
-                myDE.Rows.Add({ Name:"firstName",
-                        SubscriberKey: "LastName",
-                        EmailAddress:"rinky@gmail.com",
-                        TwilioNumber:"6375372026",
-                        Status:message.status,
-                        SID:message.sid
-                        });
-               */ 
+                 //make api call to Update DE   
+                    var headerNames = ["Authorization"];
+                    var headerValues = ["Bearer " + accessToken];
+                    var jsonBody = {
+                        "values":{
+                                    "Status": message.status,
+                                    "SID": message.sid
+                                 }                   
+                    };
+
+                    var requestUrl = rest_instance_url + "hub/v1/dataevents/key:7990AB87-86FD-4815-A47F-4F4903124687/rows/SubscriberKey:API037";
+                    var updateDE = HTTP.Put(requestUrl, contentType, Stringify(jsonBody), headerNames, headerValues);
+      
             }) 
           .done();
 
