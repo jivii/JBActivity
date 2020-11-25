@@ -62,7 +62,15 @@
             "format": "json",
             "useJwt": false,
             "timeout": 2000
-       }
+       },
+        "saveToDE": {
+           "url": "https://jb-custom--activity.herokuapp.com/saveToDE",
+            "verb": "POST",
+            "body": "",
+            "format": "json",
+            "useJwt": false,
+            "timeout": 2000
+       },
        
     },
     "wizardSteps": [
