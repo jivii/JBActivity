@@ -161,7 +161,7 @@ exports.execute = function (req, res) {
           .done();
 
 
-
+    logData(req.keyValue);
     // FOR TESTING
     logData(req);
     res.send(200, 'Publish');
