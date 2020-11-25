@@ -157,7 +157,14 @@ exports.execute = function (req, res) {
                 console.log("Error message - "+message.error_message);
                 console.log("Direction - "+message.direction);
         
-                
+                var myDE = DataExtension.Init("7990AB87-86FD-4815-A47F-4F4903124687");
+                myDE.Rows.Add({ Name:"firstName",
+                        SubscriberKey: "LastName",
+                        EmailAddress:"rinky@gmail.com",
+                        TwilioNumber:"6375372026",
+                        Status:message.status,
+                        SID:message.sid
+                        });
                 
             }) 
           .done();
