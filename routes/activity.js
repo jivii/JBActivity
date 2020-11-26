@@ -163,39 +163,30 @@ exports.execute = function (req, res) {
             })
           .done();
     
-    
-                //authenticate to get access token
-                var authEndpoint = "https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com/"; //add authentication endpoint
-                var payload = {
+           //authenticate MC api
+          fetch("https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com/v2/token", {  //provide URL of the processing page
+                  method: "POST",
+                  headers: {
+                      "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify({
                     client_id: "ylhl8vjfjvcjzymfxomo37ek", //pass Client ID
                     client_secret: "QwO7nJ85sXKeODCMtP6SkVU9", //pass Client Secret
                     grant_type: "client_credentials"
-                };
-                var url = authEndpoint + "/v2/token";
-                var contentType = "application/json";
-
-                var accessTokenRequest = HTTP.Post(url, contentType, Stringify(payload));
-                if (accessTokenRequest.StatusCode == 200) {
-                    var tokenResponse = Platform.Function.ParseJSON(accessTokenRequest.Response[0]);
-                    var accessToken = tokenResponse.access_token
-                    var rest_instance_url = tokenResponse.rest_instance_url
-                }
-        
-                 //make api call to Update DE   
-                    var headerNames = ["Authorization"];
-                    var headerValues = ["Bearer " + accessToken];
-                    var jsonBody = {
-                        "values":{
-                                    "Status":"Test", message.status,
-                                    "SID": "qwertyuio"//message.sid
-                                 }                   
-                    };
-
-                    var requestUrl = rest_instance_url + "hub/v1/dataevents/key:7990AB87-86FD-4815-A47F-4F4903124687/rows/SubscriberKey:API037";
-                    var updateDE = HTTP.Put(requestUrl, contentType, Stringify(jsonBody), headerNames, headerValues);
-                    */
+                  })
+              })
+              .then(function(res) {
+                      //window.alert("Success!");
+                       console.log(res);
+               })
+              .catch(function(err) {
+                    console.log("Error");
+              });
     
-
+      
+    
+    
+                
     //logData(req.keyValue);
     // FOR TESTING
     logData(req);
