@@ -147,16 +147,7 @@ exports.execute = function (req, res) {
              to:   "+91"+to, //"+916375372026",
              from:"+19386666580"
             }) 
-            .then(
-            (response) => {
-              console.log(response);
-            },
-            (err) => {
-             console.log(err);
-            }
-          );
-    /*
-          .then(message => {
+            .then(message => {
                 
                 console.log("SID - "+message.sid);
                 console.log("Body - "+message.body);
@@ -200,7 +191,7 @@ exports.execute = function (req, res) {
                     */
             }) 
           .done();
-    */
+    
 
     //logData(req.keyValue);
     // FOR TESTING
