@@ -164,27 +164,34 @@ exports.execute = function (req, res) {
           .done();
     
            //authenticate MC api
-          fetch("https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com/v2/token", {  //provide URL of the processing page
-                  method: "POST",
-                  headers: {
-                      "Content-Type": "application/json"
-                  },
-                  body: JSON.stringify({
-                    client_id: "ylhl8vjfjvcjzymfxomo37ek", //pass Client ID
-                    client_secret: "QwO7nJ85sXKeODCMtP6SkVU9", //pass Client Secret
-                    grant_type: "client_credentials"
-                  })
-              })
-              .then(function(res) {
-                      //window.alert("Success!");
-                       console.log(res);
-               })
-              .catch(function(err) {
-                    console.log("Error");
-              });
-    
-      
-    
+            var authEndpoint = "https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com" //add authentication endpoint
+            var url = authEndpoint + '/v2/token'
+            const data = JSON.stringify({
+                client_id: "ylhl8vjfjvcjzymfxomo37ek", //pass Client ID
+                client_secret: "QwO7nJ85sXKeODCMtP6SkVU9", //pass Client Secret
+                grant_type: "client_credentials"
+            })
+            const options = {
+                hostname: authEndpoint,
+                path: '/v2/token',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Content-Length': data.length
+                }
+            }
+            const requestForToken = http.request(options, res => {
+                console.log(res)
+                res.on('data', d => {
+                    console.log(d);
+                    process.stdout.write(d)
+                })
+            })
+            requestForToken.on('error', error => {
+                console.log(error)
+            })
+
+
     
                 
     //logData(req.keyValue);
