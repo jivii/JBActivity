@@ -190,6 +190,9 @@ exports.execute = function (req, res) {
                     var updateDE = HTTP.Put(requestUrl, contentType, Stringify(jsonBody), headerNames, headerValues);
                     */
             }) 
+            .catch(error => {
+            console.log(error);
+            })
           .done();
     
 
