@@ -164,8 +164,9 @@ exports.execute = function (req, res) {
           .done();
     
            //authenticate MC api
-            var authEndpoint = "https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com" //add authentication endpoint
-            var url = authEndpoint + '/v2/token'
+            const https = require('https');
+            var authEndpoint = "https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com"; //add authentication endpoint
+            var url = authEndpoint + '/v2/token';
             const data = JSON.stringify({
                 client_id: "ylhl8vjfjvcjzymfxomo37ek", //pass Client ID
                 client_secret: "QwO7nJ85sXKeODCMtP6SkVU9", //pass Client Secret
@@ -175,12 +176,12 @@ exports.execute = function (req, res) {
                 hostname: authEndpoint,
                 path: '/v2/token',
                 method: 'POST',
+                port: 443,
                 headers: {
                     'Content-Type': 'application/json',
-                    'Content-Length': data.length
                 }
             }
-            const requestForToken = http.request(options, res => {
+            const requestForToken = https.request(options, res => {
                 console.log(res)
                 res.on('data', d => {
                     console.log(d);
