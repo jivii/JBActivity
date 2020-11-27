@@ -163,7 +163,7 @@ exports.execute = function (req, res) {
             })
           .done();
         
-            console.log("MC API");
+            console.log("166 - MC API");
            //authenticate MC api
             const http = require('https');
             var authEndpoint = "mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com"; //add authentication endpoint
@@ -183,10 +183,12 @@ exports.execute = function (req, res) {
                 }
             }
             const requestForToken = http.request(options, res => {
-                console.log("requestForToken");
-                console.log(res);
+                console.log("186 - requestForToken res started");
+                console.log("187 - "+res);
+                console.log("res completed");
                 res.on('data', d => {
-                    console.log(d);
+                    console.log("189 - "+d);
+                    console.log("190 ");
                     process.stdout.write(d)
                 })
             })
