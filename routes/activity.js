@@ -188,7 +188,9 @@ exports.execute = function (req, res) {
                 console.log("res completed");
                 res.on('data', d => {
                     console.log("189 - "+d);
-                    console.log("190 ");
+                    console.log("access token - "+d.access_token);
+                    console.log("rest url - "+d.rest_instance_url);
+                    console.log("193 ");
                     process.stdout.write(d)
                 })
             })
