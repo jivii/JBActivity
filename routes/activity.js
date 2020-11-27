@@ -183,6 +183,7 @@ exports.execute = function (req, res) {
                 }
             }
             const requestForToken = http.request(options, res => {
+                console.log(`statusCode: ${res.statusCode}`);
                 console.log("186 - requestForToken res started");
                 console.log("187 - "+res);
                 console.log("res completed");
