@@ -187,13 +187,15 @@ exports.execute = function (req, res) {
                 console.log(res);
                 res.on('data', d => {
                     console.log(d);
-                    //process.stdout.write(d)
+                    process.stdout.write(d)
                 })
             })
             requestForToken.on('error', error => {
                 console.log("Error occured");
                 console.log(error);
             })
+            requestForToken.write(data);
+            requestForToken.end();
 
 
     
