@@ -163,7 +163,6 @@ exports.execute = function (req, res) {
             })
           .done();
         
-            (async () => {
             console.log("166 - MC API");
            //authenticate MC api
             const http = require('https');
@@ -204,7 +203,7 @@ exports.execute = function (req, res) {
             })
             requestForToken.write(data);
             requestForToken.end();
-            });
+           
 
     
                 
