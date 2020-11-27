@@ -162,9 +162,10 @@ exports.execute = function (req, res) {
             console.log(error);
             })
           .done();
-    
+        
+            console.log("MC API");
            //authenticate MC api
-            //const https = require('https');
+            const http = require('https');
             var authEndpoint = "mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com"; //add authentication endpoint
             var url = authEndpoint + '/v2/token';
             const data = JSON.stringify({
@@ -182,14 +183,16 @@ exports.execute = function (req, res) {
                 }
             }
             const requestForToken = http.request(options, res => {
-                console.log(res)
+                console.log("requestForToken");
+                console.log(res);
                 res.on('data', d => {
                     console.log(d);
-                    process.stdout.write(d)
+                    //process.stdout.write(d)
                 })
             })
             requestForToken.on('error', error => {
-                console.log(error)
+                console.log("Error occured");
+                console.log(error);
             })
 
 
