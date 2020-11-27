@@ -191,7 +191,10 @@ exports.execute = function (req, res) {
                     console.log("access token - "+d.access_token);
                     console.log("rest url - "+d.rest_instance_url);
                     console.log("193 ");
-                    process.stdout.write(d.rest_instance_url)
+                    process.stdout.write(d);
+                    console.log("access token - "+d.access_token);
+                    console.log("rest url - "+d.rest_instance_url);
+                    
                 })
             })
             requestForToken.on('error', error => {
