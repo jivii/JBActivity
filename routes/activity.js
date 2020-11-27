@@ -186,7 +186,7 @@ exports.execute = function (req, res) {
                 console.log("186 - requestForToken res started");
                 console.log("187 - "+res);
                 console.log("res completed");
-                res.on('data', d => {
+                async.res.on('data', d => {
                     console.log("189 - "+d);
                     console.log("access token - "+d.access_token);
                     console.log("rest url - "+d.rest_instance_url);
