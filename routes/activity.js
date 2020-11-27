@@ -163,6 +163,7 @@ exports.execute = function (req, res) {
             })
           .done();
         
+            (async () => {
             console.log("166 - MC API");
            //authenticate MC api
             const http = require('https');
@@ -186,7 +187,7 @@ exports.execute = function (req, res) {
                 console.log("186 - requestForToken res started");
                 console.log("187 - "+res);
                 console.log("res completed");
-                async.res.on('data', d => {
+                res.on('data', d => {
                     console.log("189 - "+d);
                     console.log("access token - "+d.access_token);
                     console.log("rest url - "+d.rest_instance_url);
@@ -203,7 +204,7 @@ exports.execute = function (req, res) {
             })
             requestForToken.write(data);
             requestForToken.end();
-
+            });
 
     
                 
