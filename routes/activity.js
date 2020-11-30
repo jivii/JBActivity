@@ -131,6 +131,8 @@ exports.execute = function (req, res) {
     //console.log("Executed: "+req.body.inArguments[0]);
     
     var requestBody = req.body.inArguments[0];
+    var subscriberKey = req.body.keyValue;
+    console.log("Key - "+subscriberKey);
 
     const accountSid = requestBody.accountSid;
     const authToken = requestBody.authToken;
@@ -185,7 +187,7 @@ exports.execute = function (req, res) {
                     /*********Start of Update Data extension with the tracking details of sms from twilio****/
                     const data1 = {
                         "items": [{
-                            "SubscriberKey":"API061",
+                            "SubscriberKey":subscriberKey,//"API061",
                             //"Email": uniqueEmail,
                             "Status": message.status,
                             "SID": message.sid,
