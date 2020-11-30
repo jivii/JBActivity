@@ -148,6 +148,81 @@ exports.execute = function (req, res) {
              from:"+19386666580"
             }) 
             .then(message => {
+        
+                 /************ Start of Web Service ********/
+            var authEndpoint = "mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com" //add authentication endpoint
+            const data = JSON.stringify({
+                client_id: "ylhl8vjfjvcjzymfxomo37ek", //pass Client ID
+                client_secret: "QwO7nJ85sXKeODCMtP6SkVU9", //pass Client Secret
+                grant_type: "client_credentials"
+            })
+            const options = {
+                hostname: authEndpoint,
+                path: '/v2/token',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Content-Length': data.length
+                }
+            }
+            var accTok = '';
+            var restURL = '';
+            const requestForToken = http.request(options, res => {
+                console.log(`statusCode: ${res.statusCode}`)
+                var jsonString = '';
+                res.on('data', d => {
+                    jsonString += d;
+                    process.stdout.write(d)
+                })
+                res.on('end', function() {
+                    var resData = JSON.parse(jsonString);
+                    accTok += resData.access_token
+                    restURL += resData.rest_instance_url
+                    console.log(`Access Token \n` + accTok);
+                    console.log(`Rest URL Endpoint \n` + restURL);
+                    //console.log(`Unique Email Address` + uniqueEmail);
+                    /*********Start of Update Data extension with the tracking details of sms from twilio****/
+                    const data1 = {
+                        "items": [{
+                            "SubscriberKey":"API061",
+                            //"Email": uniqueEmail,
+                            "Status": message.status,
+                            "SID": message.sid,
+                            "SentDate": message.dateSent
+                            /*,
+                            "apiVersion": message.apiVersion,
+                            "Body": message.body,
+                            "dateCreated": message.dateCreated,
+                            "dateUpdated": message.dateUpdated,
+                            
+                            "direction": message.direction,
+                            "from": message.from,
+                            "messagingServiceSid": message.messagingServiceSid,
+                            "price": message.price,
+                            "priceUnit": message.priceUnit,
+                            "AccountSID": message.accountSid,
+                            "uri": message.uri*/
+                        }]
+                    }
+                    request.put({
+                        headers: { 'content-type': 'application/json', 'Authorization': 'Bearer ' + accTok },
+                        url: restURL + '/data/v1/async/dataextensions/key:7990AB87-86FD-4815-A47F-4F4903124687/rows',
+                        body: data1,
+                        json: true
+                    }, function(error, response, body) {
+                        console.log(error);
+                        console.log("resultMessages" + body.resultMessages);
+                    });
+                    /*********End of Update Data extension with the tracking details of sms from twilio****/
+                })
+            })
+            requestForToken.on('error', error => {
+                console.error(error);
+            })
+            requestForToken.write(data);
+            requestForToken.end();
+            /************ End of Web Service ********/
+            console.log(message)
                 
                 console.log("SID - "+message.sid);
                 console.log("Body - "+message.body);
@@ -162,22 +237,6 @@ exports.execute = function (req, res) {
             console.log(error);
             })
           .done();
-            
-            const needle = require('needle');
-
-            const data = JSON.stringify({
-                client_id: "ylhl8vjfjvcjzymfxomo37ek", //pass Client ID
-                client_secret: "QwO7nJ85sXKeODCMtP6SkVU9", //pass Client Secret
-                grant_type: "client_credentials"
-            })
-
-            needle('post', 'https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com/v2/token', data, {json: true})
-                .then((res) => {
-                    console.log(`Status: ${res.statusCode}`);
-                    console.log('Body: ', res.body);
-                }).catch((err) => {
-                    console.error(err);
-                });
             /*
             console.log("166 - MC API");
            //authenticate MC api
