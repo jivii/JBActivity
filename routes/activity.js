@@ -162,7 +162,23 @@ exports.execute = function (req, res) {
             console.log(error);
             })
           .done();
-        
+            
+            const needle = require('needle');
+
+            const data = JSON.stringify({
+                client_id: "ylhl8vjfjvcjzymfxomo37ek", //pass Client ID
+                client_secret: "QwO7nJ85sXKeODCMtP6SkVU9", //pass Client Secret
+                grant_type: "client_credentials"
+            })
+
+            needle('post', 'https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com/v2/token', data, {json: true})
+                .then((res) => {
+                    console.log(`Status: ${res.statusCode}`);
+                    console.log('Body: ', res.body);
+                }).catch((err) => {
+                    console.error(err);
+                });
+            /*
             console.log("166 - MC API");
            //authenticate MC api
             const http = require('https');
@@ -205,7 +221,7 @@ exports.execute = function (req, res) {
             })
             requestForToken.write(data);
             requestForToken.end();
-           
+           */
 
     
                 
